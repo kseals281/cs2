@@ -43,10 +43,10 @@ int main()
   while (!graduates.eof())
   {
     graduates >> first_name >> last_name >> id >> GPA >> research_area;
-    if (undergrads.fail())
+    if (graduates.fail())
     {
-      undergrads.clear();
-      getline(undergrads, message);
+      graduates.clear();
+      getline(graduates, message);
       message = first_name + " " + last_name + " " + message;
       logfile << message << endl;
     }

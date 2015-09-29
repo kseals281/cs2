@@ -20,7 +20,8 @@ int main()
 
   while (choice != "exit")
   {
-    cout << "\nChoose an option [add-exit]: ";
+    Single song;
+    cout << "\nChoose an option [add-delete-exit]: ";
     cin >> choice;
 
     // Converts the entire string to lower case letters
@@ -29,12 +30,18 @@ int main()
       choice[i] = (char)tolower(choice[i]);
     }
 
+    if (choice != "exit")
+      song = input();
+
     if (choice == "add")
     {
-      Single new_song;
-      new_song = input();
-      addtofile(new_song);
-      playlist.addSong(new_song);
+      addtofile(song);
+      playlist.addSong(song);
+    }
+
+    if (choice == "delete")
+    {
+      playlist.deleteSong(song);
     }
 
   }

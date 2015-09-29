@@ -22,6 +22,13 @@ int main()
   {
     cout << "\nChoose an option [add-exit]: ";
     cin >> choice;
+
+    // Converts the entire string to lower case letters
+    for (int i = 0; i < choice.length(); i++)
+    {
+      choice[i] = (char)tolower(choice[i]);
+    }
+
     if (choice == "add")
     {
       Single new_song;

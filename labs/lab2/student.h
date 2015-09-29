@@ -1,6 +1,5 @@
 #ifndef STUDENTS
 #define STUDENTS
-
 #include <string>
 
 using namespace std;

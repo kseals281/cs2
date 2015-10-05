@@ -1,6 +1,8 @@
 #include "unsorted.h"
 #include "song.h"
 #include <iostream>
+#include <cctype>
+#include <fstream>
 
 using namespace std;
 
@@ -24,48 +26,10 @@ void Unsorted::addSong(Single new_song)
   length++;
 }
 
-int Unsorted::getlength() const
-{
-  return length;
-}
-
 bool Unsorted::isfull() const
 {
   return (length == SIZE);
 }
-
-Single Unsorted::getnextSingle()
-{
-  if(current == length - 1)
-  {
-    Single empty;
-    return empty;
-  }
-  current++;
-  return songs[current];
-}
-
-// Single Unsorted::getSingle(song_to_look_for) const
-// {
-//   bool more_to_search;
-//   int location = 0;
-
-//   more_to_search = (location < length)
-
-//   while (more_to_search)
-//   {
-//     switch (Single.ComparedTo( songs[location]))
-//     {
-//       case NOT_EQUAL:
-//         location++;
-//         more_to_search = (location < length);
-//       case EQUAL:
-//         song_to_look_for = songs[location];
-//         break;
-//     }
-//   }
-//   return song_to_look_for;
-// }
 
 void Unsorted::deleteSong(Single song)
 {
@@ -74,7 +38,7 @@ void Unsorted::deleteSong(Single song)
   {
     location++;
   }
-  if (length < 1)
+  if (length > 1 && location != length)
     songs[location] = songs[length - 1];
   length--;
   if (current >= length)
@@ -87,4 +51,42 @@ void Unsorted::resetlist()
 {
   length = 0;
   current = 0;
+}
+
+void Unsorted::setRating(string name, int new_rating)
+{
+  for (int i = 0; i < name.length(); ++i)
+  {
+    name[i] = (char)tolower(name[i]);
+  }
+  for (int i = 0; i < length; i++)
+  {
+    if(songs[i].title == name)
+      songs[i].rating = new_rating;
+  }
+}
+
+void Unsorted::readSongs()
+{
+  ifstream songs_file;
+  songs_file.open("favSongs.txt");
+
+  while(!songs_file.eof())
+  {
+    if(length == SIZE)
+      break;
+    Single song;
+    songs_file >> song.title >> song.artist >> song.rating;
+    addSong(song);
+  }
+}
+
+void Unsorted::printList()
+{
+  cout << endl;
+  for (int i = 0; i < length; i++)
+  {
+    cout << songs[i].title << " by " << songs[i].artist << " rating: "
+         << songs[i].rating << endl;
+  }
 }

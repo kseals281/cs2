@@ -1,6 +1,7 @@
-Eminem | Renegade | 98
-N.W.A. | Straight Outta Compton | 100
-2Pac | California Love | 99
-Prince | 7 | 89
-Rae Sremmurd | No Type | 99
-Forgot About Dre | Eminem | 98
+renegade Eminem 98
+straight_outta_compton N.W.A. 100
+california_love 2Pac 99
+7 Prince 89
+no_type Rae_Sremmurd 99
+forgot_about_dre Eminem 98
+stronger_than_you garnet 100

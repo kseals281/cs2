@@ -1,12 +1,15 @@
-#include <string>
+#ifndef NODE
+#define NODE
 
 using namespace std;
 
-enum RelationType {LESS, GREATER}
+enum RelationType {LESS, EQUAL, GREATER};
 
-struct Node()
+struct Node
 {
   int data;
   Node* next;
-  RelationType ComparedTo(Node item);
+  RelationType ComparedTo(Node* other_node);
 };
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef SORTED
+#define SORTED
+
 #include "node.h"
 
 using namespace std;
@@ -5,13 +8,17 @@ using namespace std;
 class Sorted
 {
 public:
-  void Sorted();
-  void ~Sorted();
-  bool isfull() const;
-  int getlength() const;
+  Sorted();
+  ~Sorted();
+  void readFile();
+  void addNode(Node*);
+  void printList() const;
+  void removeDuplicates();
+  void reverse();
 
 private:
-  Node* list;
-  int lenth;
-  int SIZE;
+  Node* head;
+  int length;
 };
+
+#endif

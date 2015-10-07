@@ -1,35 +1,132 @@
+#include <iostream>
 #include <string>
-#include "sorted.h"
+#include <fstream>
 #include "node.h"
+#include "sorted.h"
 
 using namespace std;
 
-void Sorted::Sorted()
+Sorted::Sorted()
 {
-  cout << "How many songs would you like in the playlist: ";
-  cin >> SIZE;
-  list = new Node[SIZE];
-  current = 0;
+  head = new Node;
   length = 0;
 }
 
-void Sorted::~sorted()
+Sorted::~Sorted()
 {
   Node* tempPtr;
-  while (listData != NULL)
+  while (head != NULL)
   {
-    tempPtr = listData;
-    listData = listData->next;
+    tempPtr = head;
+    head = head->next;
     delete tempPtr;
+  }
+  delete head;
+}
+
+void Sorted::readFile()
+{
+  ifstream int_file;
+  int_file.open("numbers.txt");
+  int num;
+
+  while(!int_file.eof())
+  {
+    Node* new_node = new Node;
+    int_file >> new_node->data;
+    addNode(new_node);
+    new_node = NULL;
+    delete new_node;
   }
 }
 
-bool Sorted::isfull() const
+void Sorted::addNode(Node* new_node)
 {
-  return (length == SIZE);
+  bool moreToSearch = true;
+  Node* current_node = head;
+  Node* previous_node = head;
+  while ( moreToSearch )
+  {
+    if(length == 0)
+    {
+      head->next = new_node;
+      break;
+    }
+    if(current_node == NULL)
+    {
+      previous_node->next = new_node;
+      break;
+    }
+    switch ( new_node->ComparedTo( current_node ) )
+    {
+      case LESS :
+        moreToSearch = true;
+        previous_node = current_node;
+        current_node = current_node->next;
+        break;
+      case EQUAL :
+      case GREATER :
+        previous_node->next = new_node;
+        new_node->next = current_node;
+        moreToSearch = false;
+        break;
+    }
+  }
+  previous_node = NULL;
+  delete previous_node;
+  current_node = NULL;
+  delete current_node;
+  length++;
 }
 
-int Sorted::getlength() const
+void Sorted::printList() const
 {
-  return length;
+  Node* current_node = head->next;
+  while(current_node != NULL)
+  {
+    cout << current_node->data << ' ';
+    current_node = current_node->next;
+  }
+  cout << endl;
+  current_node = NULL;
+  delete current_node;
+}
+
+void Sorted::removeDuplicates()
+{
+  Node* current_node = head->next;
+  Node* previous_node = head;
+
+  while(current_node != NULL)
+  {
+    if(previous_node->data == current_node->data)
+    {
+      previous_node->next = current_node->next;
+      delete current_node;
+      Node* current_node = previous_node->next;
+    }
+    previous_node = current_node;
+    current_node = current_node->next;
+  }
+  previous_node = NULL;
+  delete previous_node, current_node;
+}
+
+void Sorted::reverse()
+{
+  Node* next_node = new Node;
+  Node* previous_node = NULL;
+  Node* current_node = head->next;
+
+  while(next_node != NULL)
+  {
+    next_node = current_node->next;
+    current_node->next = previous_node;
+    previous_node = current_node;
+    current_node = next_node;
+  }
+  head->next = previous_node;
+  previous_node = NULL;
+  current_node = NULL;
+  delete previous_node, current_node, next_node;
 }

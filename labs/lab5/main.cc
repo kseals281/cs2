@@ -5,13 +5,16 @@
 
 using namespace std;
 
+
 int main()
 {
   srand(time(0));
 
   StackType stack1;
+  StackType stack2;
+  StackType stack3;
+
   stack1.recursively_print();
-  // cout << stack1.Pop() << endl << stack1.Pop() << endl;
 
   return 0;
 }

@@ -14,7 +14,6 @@ public:
 
 private:
   NodeType* head;
-  bool first;
 };
 
 struct NodeType

@@ -8,7 +8,6 @@ using namespace std;
 StackType::StackType()
 {
   head = NULL;
-  first = true;
 
   for(int i = 0; i < 20; i++)
   {
@@ -25,25 +24,16 @@ StackType::~StackType()
 void StackType::Push(int item)
 {
   NodeType* new_node = new NodeType;
-  // cout << "here" << endl;
-  if(!first)
-  {
-    new_node->next = head;
-  }
-  first = false;
+  new_node->next = head;
   new_node->info = item;
   head = new_node;
-  // cout << endl << head->info << endl;
 }
 
 int StackType::Pop()
 {
-  // cout << head->info << endl;
   NodeType* temp;
   temp = head;
   head = head->next;
-  // cout << "here" << endl;
-  // cout << endl << (head->next)->info << endl;
   delete temp;
   return head->info;
 }
@@ -59,3 +49,4 @@ void StackType::recursively_print()
   recursively_print();
   cout << num << endl;
 }
+

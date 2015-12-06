@@ -6,24 +6,26 @@
 
 using namespace std;
 
+// Initialize the length
 Sorted::Sorted()
 {
-  head = new Node;
   length = 0;
 }
 
+// Deletes all nodes in the list when object is no longer used.
 Sorted::~Sorted()
 {
-  Node* tempPtr;
+  Node* temp;
   while (head != NULL)
   {
-    tempPtr = head;
+    temp = head;
     head = head->next;
-    delete tempPtr;
+    delete temp;
   }
   delete head;
 }
 
+// Reads the values from the file into the linked list
 void Sorted::readFile()
 {
   ifstream int_file;
@@ -40,32 +42,35 @@ void Sorted::readFile()
   }
 }
 
+// Adds a new node to it's correct ordered position in the list
 void Sorted::addNode(Node* new_node)
 {
   bool moreToSearch = true;
   Node* current_node = head;
   Node* previous_node = head;
-  while ( moreToSearch )
+  while ( moreToSearch ) // Run until spot found or end of list
   {
-    if(length == 0)
+    if(length == 0) // When the list is empty
     {
+      head = new Node;
       head->next = new_node;
       break;
     }
-    if(current_node == NULL)
+    if(current_node == NULL) // End of list
     {
       previous_node->next = new_node;
       break;
     }
+    // Compare new node to each node already in the list to find if correct spot
     switch ( new_node->ComparedTo( current_node ) )
     {
-      case LESS :
+      case LESS: // The new node value won't be before the current node
         moreToSearch = true;
         previous_node = current_node;
         current_node = current_node->next;
         break;
-      case EQUAL :
-      case GREATER :
+      case EQUAL:
+      case GREATER: // The new node's value fits right before the current node
         previous_node->next = new_node;
         new_node->next = current_node;
         moreToSearch = false;
@@ -79,6 +84,7 @@ void Sorted::addNode(Node* new_node)
   length++;
 }
 
+// Goes through each node and outputs it's value
 void Sorted::printList() const
 {
   Node* current_node = head->next;
@@ -92,6 +98,8 @@ void Sorted::printList() const
   delete current_node;
 }
 
+// Walks through the list and removes and duplicates and their pointers. The
+// node's next values will be reassigned if something is removed.
 void Sorted::removeDuplicates()
 {
   Node* current_node = head->next;
@@ -112,6 +120,8 @@ void Sorted::removeDuplicates()
   delete previous_node, current_node;
 }
 
+// Reverses the list by having every node point to what was previously pointing
+// to it and the head switching to the other end of the list
 void Sorted::reverse()
 {
   Node* next_node = new Node;

@@ -18,8 +18,8 @@ int main()
   students_in_file.open("student.txt");
   int num_students = -1;
 
-  while (!students_in_file.eof()) {
-    num_students++;
+  while (!students_in_file.eof()) { // While more students in the file read them
+    num_students++;                 // into the array
     string first_name, last_name;
     students_in_file >> first_name >> last_name;
     students[num_students].name = first_name + " " + last_name;

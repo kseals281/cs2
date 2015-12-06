@@ -3,8 +3,8 @@
 
 using namespace std;
 
-void Student::printStudent()
-{
+void Student::printStudent() // Member function of struct Student.
+{                            // Prints out the name, ID, and GPA
   cout << "Name: " << name << endl;
   cout << "ID: "  << id << endl;
   cout << "GPA: " << GPA << endl << endl;

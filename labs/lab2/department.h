@@ -1,4 +1,4 @@
-#ifndef DEPARTMENT
+#ifndef DEPARTMENT // So that the struct isn't redefined
 #define DEPARTMENT
 #include <string>
 #include "student.h"
@@ -6,7 +6,7 @@
 
 using namespace std;
 
-struct Department
+struct Department // Both the undergrad and graduate functions and arrays
 {
   Student students[15];
   GradStudent gradStudents[15];

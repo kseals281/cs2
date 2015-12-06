@@ -21,6 +21,7 @@ class Student
 
 //This function takes an array of students and the total number
 //of students and sorts them in ascending order according to GPA
+// template<class S>
 void sortStudentArrayGPA(Student arr[], int n);
 
 //This function takes an array of students and the total number

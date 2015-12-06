@@ -12,6 +12,7 @@ int main()
   Department department;
 
   //Read from student.txt and keep track of how many members
+  //Also initializes log file
   ifstream undergrads, graduates;
   ofstream logfile;
   logfile.open("log.txt");
@@ -20,7 +21,7 @@ int main()
   float GPA;
   string first_name, last_name, name, research_area, message;
 
-  //Reading loop for undergrad
+  //Reading loop for undergrad. Log if error
   while (!undergrads.eof()) {
     undergrads >> first_name >> last_name >> id >> GPA;
     if (undergrads.fail())
@@ -39,6 +40,7 @@ int main()
   }
   undergrads.close();
 
+  //Read from graduate.txt and keep track of how many members. Log if error
   graduates.open("graduate.txt");
   while (!graduates.eof())
   {

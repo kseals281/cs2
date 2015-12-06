@@ -8,12 +8,15 @@ class StackType
 public:
   StackType();
   ~StackType();
+  void getValues();
   void Push(int item);
   int Pop();
-  void recursively_print();
+  int getLength();
+  // void recursively_print();
 
 private:
   NodeType* head;
+  int length;
 };
 
 struct NodeType

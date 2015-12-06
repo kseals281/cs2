@@ -16,13 +16,14 @@ string getname();
 
 int main()
 {
+  //Create and initialize the playlist
   Unsorted playlist;
   playlist.init();
   playlist.readSongs();
 
   string choice;
 
-  while (choice != "exit")
+  while (choice != "exit") // Only exit is by user selected exit
   {
     Single song;
     cout << "\nChoose an option [add-delete-rating-print-exit]: ";
@@ -31,6 +32,7 @@ int main()
     // Converts the entire string to lower case letters
     choice = lower(choice);
 
+    // If depends on the user
     if (choice == "add")
     {
       song = input();
@@ -38,14 +40,14 @@ int main()
       playlist.addSong(song);
     }
 
-    if (choice == "delete")
+    else if (choice == "delete")
     {
       Single song;
       song.title = getname();
       playlist.deleteSong(song);
     }
 
-    if (choice == "rating")
+    else if (choice == "rating")
     {
       string name = getname();
       int rating;
@@ -54,7 +56,7 @@ int main()
       playlist.setRating(name, rating);
     }
 
-    if (choice == "print")
+    else if (choice == "print")
     {
       playlist.printList();
     }
@@ -63,7 +65,7 @@ int main()
   return 0;
 }
 
-Single input()
+Single input() // Takes in the user's song and adds it to the playlist
 {
   Single new_song;
   string title, artist;
@@ -81,7 +83,7 @@ Single input()
   return new_song;
 }
 
-void addtofile(Single new_song)
+void addtofile(Single new_song) // Adds the user's song to the file
 {
   ofstream song_file;
   song_file.open("favSongs.txt", ios_base::app);
@@ -93,7 +95,7 @@ void addtofile(Single new_song)
   song_file.close();
 }
 
-string lower(string word)
+string lower(string word) // Changes all the characters to lowercase
 {
   for (int i = 0; i < word.length(); i++)
   {
@@ -102,7 +104,7 @@ string lower(string word)
   return word;
 }
 
-string removeSpace(string word)
+string removeSpace(string word) // Removes a space from the title or artist name
 {
   for (int i = 0; i < word.length(); i++)
   {
@@ -112,7 +114,7 @@ string removeSpace(string word)
   return word;
 }
 
-string getname()
+string getname() // Gets the name of the song
 {
   cout << "\nName of song: ";
   Single song;

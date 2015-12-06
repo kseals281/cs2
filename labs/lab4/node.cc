@@ -1,8 +1,7 @@
 #include "node.h"
 #include <iostream>
 
-using namespace std;
-
+// Compares the number in the other node to this node's number
 RelationType Node::ComparedTo(Node* other_node)
 {
   if(data < other_node->data)

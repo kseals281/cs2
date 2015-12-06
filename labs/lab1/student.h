@@ -1,3 +1,5 @@
+#ifndef STUDENT // Needed so that the struct isn't defined more than once
+#define STUDENT
 #include <string>
 using namespace std;
 
@@ -14,3 +16,4 @@ void sortStudentArrayGPA(Student arr[], int n);
 
 //This function takes an array of students and the total number //of students and prints them to console
 void printStudents(Student students[], int index);
+#endif

@@ -2,6 +2,7 @@
 
 using namespace std;
 
+// Compares the title of the song and returns an enum based on equality
 RelationType Single::ComparedTo(Single other_song)
 {
   for (int i = 0; i < other_song.title.length(); i++)

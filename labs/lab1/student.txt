@@ -5,3 +5,4 @@ Claire Voyant 1234570 3.0
 Luna Tick 1234571 2.9
 Pete Zaria 1234572 3.2
 Phillip Uster 1234573 2.8
+Naomi Stewert 1243245 3.3
